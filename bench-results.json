@@ -1,0 +1,33 @@
+{
+  "machine": "Apple Silicon arm64, single thread",
+  "sections": {
+    "booking": {
+      "attempts": 50000,
+      "accepted": 449,
+      "rejected": 49551,
+      "elapsedMs": 53,
+      "attemptsPerSecond": 943401,
+      "finalCalendarClean": true
+    },
+    "cancellationWave": {
+      "calendarBefore": 450,
+      "cancellations": 144,
+      "waitlistSize": 2500,
+      "clientsSeatedFromWaitlist": 150,
+      "minutesFreed": 3705,
+      "minutesRefilled": 3585,
+      "refillRate": 0.9676,
+      "elapsedMs": 16,
+      "cancelPlusBackfillPerSecond": 9000,
+      "finalCalendarClean": true
+    },
+    "slotSearch": {
+      "searches": 2000,
+      "slotsReturned": 4000,
+      "elapsedMs": 544,
+      "searchesPerSecond": 3676,
+      "meanMsPerSearch": 0.272
+    }
+  }
+}
+
