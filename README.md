@@ -19,7 +19,16 @@ calendar, ever. Everything else (search, booking, moves, backfill) proposes;
 `book()` disposes. There is a `verify()` sweep that walks every calendar and
 reports collisions, and the storm test calls it after every wave of chaos.
 
-## What is in here
+## Trying it out
+
+```
+node test/run.js
+node bench.js
+```
+
+No install step. There is nothing to install.
+
+## Files
 
 - `src/schedule.js` - services with buffers, staff with working windows and
   skills, the padded-interval math.
@@ -34,7 +43,7 @@ reports collisions, and the storm test calls it after every wave of chaos.
 - `bench.js` - produces `bench-results.json`; the numbers below are from a
   real run on Apple Silicon (single thread).
 
-## Numbers from the bench
+## Benchmarks
 
 - 50,000 booking attempts against a 5-person, 6-day calendar processed at
   943,401 attempts/sec; the calendar saturates at 449 appointments and ends
@@ -54,10 +63,10 @@ after one client. The symptom was a refill rate pinned at exactly the length
 of the first fitted service, which the storm test flagged. The fix moves the
 cursor to the padded end of the seated appointment and proposes the next
 start beyond the following client's setup buffer. The buffer math also means
-a perfect refill is sometimes impossible, and the tests assert the honest
+a perfect refill is sometimes impossible, and the tests assert the achievable
 number rather than pretending otherwise.
 
-## Limits
+## Scope
 
 - Time is integer minutes from an arbitrary epoch; there is no timezone or
   DST handling. Real deployments live and die on that, this project does not
@@ -67,13 +76,4 @@ number rather than pretending otherwise.
 - Backfill is greedy, not optimal. A bin-packing pass could beat it on
   contrived inputs; the greedy version is simple, fast and explainable to a
   front desk.
-
-## Run it
-
-```
-node test/run.js
-node bench.js
-```
-
-No install step. There is nothing to install.
 
